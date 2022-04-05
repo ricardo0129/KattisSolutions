@@ -1,3 +1,18 @@
+/*
+	The task is just asking us to see if we can reverse a given array 
+	if there is a set of swap positions. 
+	Lets say our array is {A1,A2,A3,A4...,An}
+	then what we need to have as a final array is {An,An-1,...,A2,A1}
+	We can see that A1 and An are swapped. A2 and An-2 
+	Lets say we can swap position 1 with 2 then we create an undirected edge from 1->2
+	This will give us a graph with N nodes and K edges. 
+	Our assumption is, if there exists a path from A1->An, A2->An-2, ... 
+	then we can reverse the array. 
+	So this now becomes a rechability question. Can we reach A1->An. We solve this query 
+	in O(1) with disjoint set union which takes O(n) to build. 
+	We make O(n/2) queries. 
+	total time complexity is O(n)+O(n/2) = O(n)
+   */
 #include <bits/stdc++.h>
 using namespace std;
 #define vi vector<int> 
