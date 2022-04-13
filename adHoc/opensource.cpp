@@ -1,3 +1,10 @@
+/*
+Not much to explain on this one. The implementatino is a bit long 
+but we just have to keep a maping of students -> ids. 
+a set for each student of the projects they are signed up for. 
+and a set for each project of the students that have signed for it. It's
+a good problem to test your basic data structure knowledge.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define vi vector<int> 
