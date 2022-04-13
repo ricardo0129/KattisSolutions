@@ -1,3 +1,14 @@
+/*
+    A lot of boiler plate code but the question is very simple when modeled as a graph. 
+    For a given square on the grid we can go into one of 8 adjacent grid spaces 
+    if that space is inside the grid. The cost to move to each of the squares is 1
+    and 0 if the direction we are going to matches the value of that grid spot. 
+    So we can just run dijkstras on every single query and check the distance 
+    from the given start node to the given end node. 
+    Since the grid size can be up only up to 50*50. We can get a solution 
+    under the time limit. 
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define vi vector<int> 
