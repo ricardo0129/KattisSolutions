@@ -101,14 +101,6 @@ int main()
 		FOR(i,bob+1){
 			int ss = i, rr = i+alice;
 			bool curr = false;
-			//look for an occurence of valid==true in range ss<=j<=rr
-			/*
-			for(int j=ss;j<=rr;j++){
-				if(valid[j]){
-					curr = true;
-				}
-			}
-			*/
 			int js = st.query(ss,rr);
 			if(js>0) curr  = true;
 			possible &= curr;
