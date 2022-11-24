@@ -12,20 +12,23 @@ using namespace std;
 
 const int MOD = (int)1e9+7;
 
+ll gcd(ll a, ll b){
+    if(b==0) return a;
+    return gcd(b,a%b);
+}
 int main()
 {
-    int correct;
-    cin>>correct;
-    string A,B;
-    cin>>A>>B;
-    int n = A.size();
-    int same = 0, diff = 0;
-    FOR(i,n){
-       if(A[i]==B[i]) same++;
-       else diff++;
+    ll a, b;
+    cin>>a>>b;
+    if(a%2!=b%2){
+        cout<<0<<endl;
+        return 0;
     }
-    int notcorrect = n-correct;
-    if(correct<same) cout<<correct+diff<<endl;
-    else cout<<notcorrect+same<<endl;
+    ll g = gcd(a,b);
+    a/=g;
+    b/=g;
+    if(a%2==0 || b%2==0) g=0;
+    cout<<g<<endl;
+
     return 0;
 }

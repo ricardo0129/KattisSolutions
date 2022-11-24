@@ -12,20 +12,23 @@ using namespace std;
 
 const int MOD = (int)1e9+7;
 
+bool check(ll v){
+    ll sum = 0;
+    ll x = v;
+    while(v){
+        sum+=v%10;
+        v/=10;
+    }
+    return x%sum==0;
+}
 int main()
 {
-    int correct;
-    cin>>correct;
-    string A,B;
-    cin>>A>>B;
-    int n = A.size();
-    int same = 0, diff = 0;
-    FOR(i,n){
-       if(A[i]==B[i]) same++;
-       else diff++;
+    ll n;
+    cin>>n;
+    while(true){
+       if(check(n)) break; 
+       n++;
     }
-    int notcorrect = n-correct;
-    if(correct<same) cout<<correct+diff<<endl;
-    else cout<<notcorrect+same<<endl;
+    cout<<n<<endl;
     return 0;
 }

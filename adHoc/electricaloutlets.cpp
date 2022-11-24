@@ -14,18 +14,18 @@ const int MOD = (int)1e9+7;
 
 int main()
 {
-    int correct;
-    cin>>correct;
-    string A,B;
-    cin>>A>>B;
-    int n = A.size();
-    int same = 0, diff = 0;
-    FOR(i,n){
-       if(A[i]==B[i]) same++;
-       else diff++;
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        vi A(n);
+        int tot = 0;
+        FOR(i,n){
+            cin>>A[i];
+            tot+=A[i];
+        }
+        cout<<tot-n+1<<endl;
     }
-    int notcorrect = n-correct;
-    if(correct<same) cout<<correct+diff<<endl;
-    else cout<<notcorrect+same<<endl;
     return 0;
 }

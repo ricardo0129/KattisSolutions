@@ -14,18 +14,19 @@ const int MOD = (int)1e9+7;
 
 int main()
 {
-    int correct;
-    cin>>correct;
-    string A,B;
-    cin>>A>>B;
-    int n = A.size();
-    int same = 0, diff = 0;
-    FOR(i,n){
-       if(A[i]==B[i]) same++;
-       else diff++;
+    string in;
+    while(cin>>in){
+        char previous = in[0];
+        int cc = 0;
+        FOR(i,in.size()){
+            if(in[i]==previous)cc++;
+            else{
+                cout<<cc<<previous;
+                previous=in[i];
+                cc=1;
+            }
+        }
+        cout<<cc<<previous<<endl;
     }
-    int notcorrect = n-correct;
-    if(correct<same) cout<<correct+diff<<endl;
-    else cout<<notcorrect+same<<endl;
     return 0;
 }

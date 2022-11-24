@@ -6,6 +6,9 @@ using namespace std;
 #define pll pair<ll,ll>
 #define vll vector<ll>
 #define FOR(i,n) for(int i=0;i<n;i++)
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define all(x) begin(x), end(x)
+#define sz(x) (int)(x).size()
 #define pb push_back
 #define f first
 #define s second
@@ -14,18 +17,16 @@ const int MOD = (int)1e9+7;
 
 int main()
 {
-    int correct;
-    cin>>correct;
-    string A,B;
-    cin>>A>>B;
-    int n = A.size();
-    int same = 0, diff = 0;
-    FOR(i,n){
-       if(A[i]==B[i]) same++;
-       else diff++;
+    int n;
+    cin>>n;
+    long double ans = 0;
+    long double fact = 1;
+    FOR(i,n+1){
+        ans+=fact;
+        fact/=(i+1);
     }
-    int notcorrect = n-correct;
-    if(correct<same) cout<<correct+diff<<endl;
-    else cout<<notcorrect+same<<endl;
+
+
+    printf("%.14Lf\n",ans);
     return 0;
 }
