@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long 
@@ -76,4 +77,51 @@ int main()
 
 
 	return 0;
+=======
+using namespace std;
+#define ll long long
+#define vi vector<int>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define vll vector<ll>
+#define FOR(i,n) for(int i=0;i<n;i++)
+#define pb push_back
+#define f first
+#define s second
+
+const int MOD = (int)1e9+7;
+int n,m;
+vi G[51];
+int color[51];
+int dfs_num[51],dfs_low[51];
+int parent[51];
+int num;
+void dfs(int u){
+    color[u] = 1;
+    dfs_low[u] = dfs_num[u] = num++;
+    for(int v:G[u]){
+        if(!vist[v]){
+            parent[v] = u;
+            dfs(v);
+        }
+        else if(){
+        }
+
+    }
+
+    color[u] = 2;
+}
+int main()
+{
+    cin>>n>>m;
+    FOR(i,m){
+        int u,v;
+        cin>>u>>v;
+        G[u].pb(v);
+        G[v].pb(u);
+    }
+
+
+    return 0;
+>>>>>>> Stashed changes
 }
