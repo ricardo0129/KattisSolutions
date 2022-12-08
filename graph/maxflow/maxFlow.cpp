@@ -1,65 +1,80 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long 
+#define ll long long
 #define vi vector<int>
-#define vll vector<ll>
 #define pii pair<int,int>
 #define pll pair<ll,ll>
+#define vll vector<ll>
+#define FOR(i,n) for(int i=0;i<n;i++)
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define all(x) begin(x), end(x)
+#define sz(x) (int)(x).size()
 #define pb push_back
 #define f first
 #define s second
-#define FOR(i,n) for(int i=0;i<n;i++)
 
-const int N = 1000;
-int cap[N][N];
-bool seen[N];
-int sink,source;
-vi G[N];
-int n,m;
+const int MOD = (int)1e9+7;
+template<class T> T edmond(vector<unordered_map<int,T>>& graph, int source, int sink){
+    T flow = 0;
+    vi par(sz(graph)), q = par;
+    for(;;){
+        fill(all(par),-1);
+        par[source] = 0;
+        int ptr = 1;
+        q[0] = source;
+        rep(i,0,ptr){
+            int x = q[i];
+            for(auto e: graph[x]){
+                if(par[e.f]==-1 && e.s>0){
+                    par[e.f] = x;
+                    q[ptr++] = e.f;
+                    if(e.f==sink) goto out;
+                }
+            }
+        }
+        return flow;
+    out:
+        T inc = numeric_limits<T>::max();
+        for(int y = sink; y!=source; y = par[y])
+            inc = min(inc,graph[par[y]][y]);
 
-void addEdge(int u, int v,int c){
-	cap[u][v]+=c;
-	G[u].pb(v);
-}
-int dfs(int u, int flow){
-	if(u==sink) return flow;
-	seen[u] = true;
-	int sent = 0 ;
-	for(int v:G[u]){
-		if(cap[u][v]>0 && !seen[v]){
-			sent = dfs(v,min(flow,cap[u][v]));
-			if(sent>0){
-				cap[u][v]-=sent;
-				cap[v][u]+=sent;
-				return sent;
-			}
-		}
-	}
-	return 0;
+        flow+=inc;
+        for(int y = sink;y!=source;y = par[y]){
+            int p = par[y];
+            if((graph[p][y]-=inc)<=0) graph[p].erase(y);
+            graph[y][p] += inc;
+        }
+    }
 }
 
-int maxFlow(int source){
-	int total = 0;
-	int curr_flow = -1;
-	while(curr_flow!=0){
-		memset(seen,false,sizeof seen);
-		curr_flow = dfs(source,INT_MAX);
-		total+=curr_flow;
-	}
-	return total;
-}
 int main()
 {
-	cin>>n>>m;
-	for(int i=0;i<m;i++){
-		int u,v,c;
-		cin>>u>>v>>c;
-		addEdge(u,v,c);
-		addEdge(v,u,c);
-	}
-	source = 1; sink = n;
-	cout<<maxFlow(1)<<endl;
-
-	
-	return 0;
+    int n,m,s,t;
+    cin>>n>>m>>s>>t;
+    vector<unordered_map<int,int>> graph(n);
+    vector<pii> edges;
+    FOR(i,m){
+        int u, v, c;
+        cin>>u>>v>>c;
+        graph[u][v] += c;
+        edges.pb({u,v});
+    }
+    vector<unordered_map<int,int>> before = graph;
+    int flow = edmond(graph,s,t);
+    map<pii,int> cap;
+    set<int> nodes;
+    for(pii e: edges){
+        int u = e.f, v = e.s;
+        int taken = before[u][v]-graph[u][v];
+        if(taken>0){
+           cap[{u,v}]+=taken; 
+           nodes.insert(u);
+           nodes.insert(v);
+        }
+    }
+    cout<<n<<" "<<flow<<" "<<sz(cap)<<endl;
+    for(auto e: cap){
+       cout<<e.f.f<<" "<<e.f.s<<" "<<e.s<<endl;
+    }
+    return 0;
 }
