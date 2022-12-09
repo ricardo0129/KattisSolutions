@@ -14,12 +14,7 @@ for filename in ./*.in; do
       echo "✓"
     else
       echo "✕"
-      o1=$(cat ./$filename | ../a.out)
-      o2=$(cat $v2)
-      e=$(echo "$o1 - $o2" | bc)
       echo "$filename"
-      echo "$e"
-#      echo "$filename"
     fi
     # ... rest of the loop body
 done
