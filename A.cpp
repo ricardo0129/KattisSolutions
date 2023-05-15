@@ -15,13 +15,27 @@ using namespace std;
 
 const int MOD = (int)1e9+7;
 
+vi A;
+vi B;
+int b,p;
+int dp[1010][1000*100][2];
 int main()
 {
-    int A[3];
-    FOR(i,3) cin>>A[i];
-    sort(A,A+3);
-    string v; cin>>v;
-    FOR(i,3) cout<<A[v[i]-'A']<<" ";
-    cout<<endl;
+    cin>>b>>p;
+    A.resize(p+1);
+    FOR(i,p) cin>>A[i];
+    reverse(A.begin(),A.end());
+    int f=0;
+    for(;f<p;f++){
+        if(A[f]!=0) break;
+    }
+    B.assign(p+1,0);
+    B[f] = b-A[f];
+    f++;
+    for(;f<p;f++){
+        B[f] = b-1-A[f];
+    }
+	dp[0][0][0] = 
+    
     return 0;
 }

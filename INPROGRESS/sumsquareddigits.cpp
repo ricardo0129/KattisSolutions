@@ -15,19 +15,23 @@ using namespace std;
 
 const int MOD = (int)1e9+7;
 
-int n;
-int solve(int i, bool left){
-    if(i>n) return 1;
-
-}
 int main()
 {
-    cin>>n;
-    vi A(n);
-    FOR(i,n) vin>>A[i];
-    int ans = 0;
-    if(A[0]<A[1]) ans = solve(1,1);
-    else ans = solve(1,0);
-    cout<<ans<<endl;
+    int t;
+    cin>>t;
+    while(t--){
+		int k, b, n;
+		cin>>k>>b>>n;
+		ll numb = 0;
+		for(int i=0;n;i++, n=n/10){
+			 numb+=pow(b,i)*(n%10);
+		}
+		ll ans = 0;
+		while(numb){
+			ans+=(numb%10)*(numb%10);
+			numb/=10;
+		}
+		cout<<k<<" "<<ans<<endl;
+    }
     return 0;
 }
